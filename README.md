@@ -1,6 +1,6 @@
-# Dockerized RabbitMQ 3.6-1
+# Dockerized RabbitMQ 
 
-## 使用
+## 如何使用
 
 ### 变量配置
 通过使用`RABBITMQ_*` 的形式设置RabbitMQ的参数如:
