@@ -1,34 +1,76 @@
 # Dockerfile for RabbitMQ 
 
-## 介绍
-这个dockerfile fork自 docker hub的 [官方仓库](https://github.com/docker-library/rabbitmq)。为了更好的支持好雨云的一键部署功能，我们对镜像做了一些适配调整，详细的内容参见下面的说明文档。
+> 这个dockerfile fork自 docker hub的 [官方仓库](https://github.com/docker-library/rabbitmq)。为了更好的支持好雨云的一键部署功能，我们对镜像做了一些适配调整，详细的内容参见下面的说明文档。
 
-## 如何使用
 
-### 默认用户和密码
+<a href="http://app.goodrain.com/app/28/" target="_blank"><img src="http://www.goodrain.com/images/deploy/button_120201.png"></img></a>
+
+# 目录
+
+
+# 部署到好雨云
+
+## 一键部署
+通过点击本文最上方的 “安装到好雨云” 按钮会跳转到 好雨应用市场的应用首页中，可以通过一键部署按钮安装
+
+## 默认用户和密码
 在应用市场中安装的RabbitMQ如果在向导中不设置用户名和密码，则平台会默认设置一个用户名（`admin`）和生成一个`随机`的密码。详细的连接信息可以在安装后的应用首页中看到。
 
-### 变量配置
+## 环境变量
+
+| 变量名 | 变量默认值 | 说明 |
+|--------|------------|-------|
+|RABBITMQ_HOST|127.0.0.1|连接ip|
+|RABBITMQ_PORT|4369|连接端口|
+|RABBITMQ_DEFAULT_USER|admin|默认用户|
+|RABBITMQ_DEFAULT_PASS|`随机`|默认随机密码|
+|MEMORY_SIZE|128M|只读，平台设置|
+
+## 数据安全
+平台采用高速SSD固态硬盘来存储数据，并且会有自动备份机制将数据存3份，用户不必担心数据的丢失。默认会将`/var/lib/rabbitmq`目录中的内容进行持久化存储
+
+## 更新
+当平台的应用版本检测到有更新时，会出现 如下的图标，可以直接点击更新来更新自己的服务。
+
+[更新图标 - 暂缺]()
+
+`注意：` 请认真查看新版本更新日志，随意更新当前正常运行的应用有可能造成不可预知的问题。
+
+
+# 部署到本地
+
+## 拉取镜像
+```bash
+docker pull goodrain.io/rabbitmq:latest
+```
+
+## 从dockerfile构建镜像
+```bash
+git clone https://github.com/goodrain-apps/docker-rabbitmq.git
+cd docker-rabbitmq
+docker build -t rabbitmq
+```
+## 本地运行
 通过使用`RABBITMQ_*` 的形式设置RabbitMQ的参数如:
 
 ```bash
 docker run -it -e MEMORY_SIZE=large \
--e RABBITMQ_DEFAULT_USER=zulip  \
--e RABBITMQ_DEFAULT_PASS=zulip \
+-e RABBITMQ_DEFAULT_USER=admin  \
+-e RABBITMQ_DEFAULT_PASS=pass123465 \
 -v /tmp/ttt/:/var/lib/rabbitmq \
-goodrain.me/rabbitmq:3.6.0-1_123001
+goodrain.io/rabbitmq:3.6.0-1_123001
 ```
 
-### 内存配置
+# 内存配置
 默认情况下RabbitMQ的`vm_memory_high_watermark` 设置的是 `0.5` 也就是 应用内存的一半
 
-### 数据持久化
+# 数据持久化
 需要挂在外部存储来达到数据持久化的目的，默认挂在到镜像的`/var/lib/rabbitmq` 目录
 
-### 磁盘限制
+# 磁盘限制
 `disk_free_limit` 默认配置的是应用内存的2倍，如应用内存1G，则磁盘存储限制是2G
 
-### 启动日志
+# 启动日志
 
 ```bash
 memory type:large
@@ -108,7 +150,7 @@ Server startup complete; 0 plugins started.
 ```
 
 
-## 注意
+# 注意
 
 - run.sh 
 
