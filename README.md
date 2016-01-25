@@ -62,7 +62,7 @@ docker pull goodrain.io/rabbitmq:latest
 ```bash
 git clone https://github.com/goodrain-apps/docker-rabbitmq.git
 cd docker-rabbitmq
-docker build -t rabbitmq
+docker build -t rabbitmq .
 ```
 ## 本地运行
 通过使用`RABBITMQ_*` 的形式设置RabbitMQ的参数如:
