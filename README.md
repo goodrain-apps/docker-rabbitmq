@@ -3,7 +3,7 @@
 > 这个dockerfile fork自 docker hub的 [官方仓库](https://github.com/docker-library/rabbitmq)。为了更好的支持好雨云的一键部署功能，我们对镜像做了一些适配调整，详细的内容参见下面的说明文档。
 
 
-<a href="http://app.goodrain.com/app/29/" target="_blank"><img src="http://www.goodrain.com/images/deploy/button_120201.png"></img></a>
+<a href="http://app.goodrain.com/app/29/" target="_blank"><img src="http://www.goodrain.com/images/deploy/button_16012601.png"></img></a>
 
 # 目录
 - [部署到好雨云](#部署到好雨云)
